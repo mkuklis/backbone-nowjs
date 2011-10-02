@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>nowjs test</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.3/jquery.min.js"></script>
+    <script src="http://documentcloud.github.com/underscore/underscore.js"></script>
+    <script src="backbone.js"></script>
+    <script src="/nowjs/now.js"></script>
+    <script src="backbone-nowjs.js"></script>
+    <script>
+      var CarModel = Backbone.Model.extend({
+        collection: CarCollection,
+        initialize: function () {
+        }
+      });
+
+      var CarCollection = Backbone.Collection.extend({
+        url: "/cars",
+        model: CarModel
+      });
+
+      $(document).ready(function() {
+        var collection = new CarCollection();
+
+        collection.bind("add", function (model) {
+          $('#cars').append("<div>" + model.get('id') + "</div>");
+        });
+
+        collection.bind("remove", function (model) {
+          $("#cars").find("div").last().remove();
+        });
+
+        collection.bind("reset", function (collection) {
+          collection.each(function (model) {
+            $('#cars').append("<div>" + model.get('id') + "</div>");
+          });
+        });
+
+        now.ready(function () {
+          collection.fetch();
+        });
+
+        $("#fetch").click(function () {
+          $('#cars').html("");
+          collection.fetch();
+        });
+
+        $("#create").click(function () {
+          var m1 = new CarModel();
+          m1.set({color: "red"});
+          collection.create(m1);
+        });
+
+         $("#update").click(function () {
+           var m = collection.at(0);
+           m.save({color: "blue"});
+        });
+
+        $("#destroy").click(function () {
+          var m = collection.last();
+          m.destroy();
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input id="fetch" type="button" value="Fetch" />
+    <input id="create" type="button" value="Create" />
+    <input id="update" type="button" value="Update" />
+    <input id="destroy" type="button" value="Destroy" />
+    <div id="cars"></div>
+  </body>
+</html>
