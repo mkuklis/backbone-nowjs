@@ -1,5 +1,5 @@
 (function() {
-  var B, uuid;
+  var B;
   var __hasProp = Object.prototype.hasOwnProperty, __extends = function(child, parent) {
     for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; }
     function ctor() { this.constructor = child; }
@@ -36,13 +36,19 @@
       name = B.nowjsConnector.extractName(this);
       return now[name] = {
         update: __bind(function(model, options) {
-          return this.get(model.id).set(model, options);
+          if (model != null) {
+            return this.get(model.id).set(model, options);
+          }
         }, this),
         create: __bind(function(model, options) {
-          return this.add(model, options);
+          if (model != null) {
+            return this.add(model, options);
+          }
         }, this),
         "delete": __bind(function(model, options) {
-          return this.remove(model, options);
+          if (model != null) {
+            return this.remove(model, options);
+          }
         }, this),
         read: __bind(function(data, options) {
           return this[(options != null ? options.add : void 0) ? 'add' : 'reset'](data, options);
@@ -59,7 +65,6 @@
     return now.serverSync(method, name, model.attributes, options);
   };
   if ((typeof module !== "undefined" && module !== null ? module.exports : void 0) != null) {
-    uuid = require('backbone');
     B.nowjsConnector.connect = function(everyone, backends) {
       return everyone.now.serverSync = function(method, name, model, options) {
         var action;
@@ -68,6 +73,7 @@
           if (method === "read") {
             return this.now[name][method](data, options);
           } else {
+            console.log('calling back client');
             return everyone.now[name][method](data, options);
           }
         }, this));
@@ -112,8 +118,8 @@
           el = _ref[i];
           if (data.id === el.id) {
             this.col.splice(i, 1);
-            callback(this.col[i]);
-            return this.col[i];
+            callback(data);
+            return data;
           }
         }
       };

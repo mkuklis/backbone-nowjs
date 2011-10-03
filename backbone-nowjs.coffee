@@ -20,32 +20,33 @@ class B.Collection extends B.Collection
     # nowjs callbacks
     now[name] =
       update: (model, options) =>
-        @.get(model.id).set(model, options)
+        @.get(model.id).set(model, options) if model?
       create: (model, options) =>
-        @.add(model, options)
+        @.add(model, options) if model?
       delete: (model, options) =>
-        @.remove(model, options)
+        @.remove(model, options) if model?
       read: (data, options) =>
         @[if options?.add then 'add' else 'reset'](data, options);
 
 B.sync = (method, model, options) ->
   name = Backbone.nowjsConnector.extractName(@)
+  # nowjs currently doesn't seem to handle complex 
+  # structures so removing callbacks for now
   delete options.success
   delete options.error
   now.serverSync method, name, model.attributes, options
 
 # server side
 if module?.exports?
-  uuid = require('backbone');
-
   B.nowjsConnector.connect = (everyone, backends) ->
-    # register server side server callback
+    # register server side callback
     everyone.now.serverSync = (method, name, model, options) ->
       action = if options.action? then options.action else method
       backends[name][action] model, options, (data) =>
         if method == "read" # call current client
           this.now[name][method](data, options)
         else # call everyone
+          console.log('calling back client')
           everyone.now[name][method](data, options)
 
   # Backbone Backend
@@ -74,7 +75,7 @@ if module?.exports?
       for el, i in @.col
         if data.id == el.id
           @.col.splice(i, 1);
-          callback(@.col[i])
-          return @.col[i]
+          callback(data)
+          return data
 
   module.exports = B
