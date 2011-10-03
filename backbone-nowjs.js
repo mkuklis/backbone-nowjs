@@ -50,30 +50,28 @@
             return this.remove(model, options);
           }
         }, this),
-        read: __bind(function(data, options) {
-          return this[(options != null ? options.add : void 0) ? 'add' : 'reset'](data, options);
-        }, this)
+        read: __bind(function(data, options, success) {}, this)
       };
     };
     return Collection;
   })();
   B.sync = function(method, model, options) {
-    var name;
+    var name, success;
     name = Backbone.nowjsConnector.extractName(this);
+    success = options.success;
     delete options.success;
     delete options.error;
-    return now.serverSync(method, name, model.attributes, options);
+    return now.serverSync(method, name, model.attributes, options, success);
   };
   if ((typeof module !== "undefined" && module !== null ? module.exports : void 0) != null) {
     B.nowjsConnector.connect = function(everyone, backends) {
-      return everyone.now.serverSync = function(method, name, model, options) {
+      return everyone.now.serverSync = function(method, name, model, options, success) {
         var action;
         action = options.action != null ? options.action : method;
         return backends[name][action](model, options, __bind(function(data) {
           if (method === "read") {
-            return this.now[name][method](data, options);
+            return success(data, options);
           } else {
-            console.log('calling back client');
             return everyone.now[name][method](data, options);
           }
         }, this));
@@ -90,7 +88,9 @@
           el = _ref[i];
           if (data.id === el.id) {
             this.col[i] = data;
-            callback(this.col[i]);
+            if (typeof callback === "function") {
+              callback(this.col[i]);
+            }
             return this.col[i];
           }
         }
@@ -98,7 +98,7 @@
       Backend.prototype.create = function(data, options, callback) {
         data.id = Math.floor(Math.random() * 10000);
         this.col.push(data);
-        return callback(data);
+        return typeof callback === "function" ? callback(data) : void 0;
       };
       Backend.prototype.read = function(data, options, callback) {
         var item;
@@ -106,9 +106,9 @@
           item = _(this.col).detect(function(item) {
             return item.id === data.id;
           });
-          return callback(item);
+          return typeof callback === "function" ? callback(item) : void 0;
         } else {
-          return callback(this.col);
+          return typeof callback === "function" ? callback(this.col) : void 0;
         }
       };
       Backend.prototype["delete"] = function(data, options, callback) {
@@ -118,13 +118,16 @@
           el = _ref[i];
           if (data.id === el.id) {
             this.col.splice(i, 1);
-            callback(data);
+            if (typeof callback === "function") {
+              callback(data);
+            }
             return data;
           }
         }
       };
       return Backend;
     })();
+    B.Backend.extend = B.Model.extend;
     module.exports = B;
   }
 }).call(this);

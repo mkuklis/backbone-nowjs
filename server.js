@@ -21,8 +21,24 @@ app.use(express.static(__dirname + '/'));
 app.get('/', function(req, res) {
   res.render('index.html');
 });
-
 app.listen(port);
+
 var everyone = nowjs.initialize(app);
-var cars = new Backbone.Backend
-Backbone.nowjsConnector.connect(everyone, {cars: cars});
+var patients = new Backbone.Backend();
+var Procedures = Backbone.Backend.extend({
+  byPatientId: function (model, options, callback) {
+    var results = [];
+    for (var i = 0, l = this.col.length; i < l; i++) {
+      if (this.col[i].patientId == options.id) {
+        results.push(this.col[i]);
+      }
+    }
+    callback(results);
+  }
+});
+
+var procedures = new Procedures();
+procedures.create({id:1, type:"outpatient", patientId: 1});
+procedures.create({id:2, type:"outpatient", patientId: 1});
+
+Backbone.nowjsConnector.connect(everyone, {patients: patients, procedures:procedures});

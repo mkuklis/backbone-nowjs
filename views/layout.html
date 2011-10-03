@@ -8,19 +8,43 @@
     <script src="/nowjs/now.js"></script>
     <script src="backbone-nowjs.js"></script>
     <script>
-      var CarModel = Backbone.Model.extend({
-        collection: CarCollection,
+      var Patient = Backbone.Model.extend({
+        collection: Patients,
+        initialize: function () {
+          this.procedures = new Procedures();
+          this.procedures.url = '/patients/' + this.id + '/procedures';
+          this.procedures.bind("reset", function (collection) {
+            if (collection.size() == 0) {
+
+            }
+          });
+        },
+        getProcedures: function(type) {
+          this.procedures.url = '/patients/' + this.id + '/procedures';
+          this.procedures.fetch({action: "byPatientId", id: this.id, success: function (collection) {
+            console.log(collection);
+          }});
+        }
+      });
+
+      var Patients = Backbone.Collection.extend({
+        url: "/patients",
+        model: Patient
+      });
+
+      var Procedures = Backbone.Collection.extend({
+        url: "/procedures",
+        model: Procedure
+      });
+
+      var Procedure = Backbone.Model.extend({
+        collection: Procedures,
         initialize: function () {
         }
       });
 
-      var CarCollection = Backbone.Collection.extend({
-        url: "/cars",
-        model: CarModel
-      });
-
       $(document).ready(function() {
-        var collection = new CarCollection();
+        var collection = new Patients();
         collection.bind("add", function (model) {
           $('#cars').append("<div>" + model.get('id') + "</div>");
         });
@@ -36,7 +60,10 @@
         });
 
         now.ready(function () {
-          collection.fetch();
+          //collection.fetch();
+          var p = new Patient();
+          p.set({id: 1, name: "Test"});
+          p.getProcedures();
         });
 
         $("#fetch").click(function () {
@@ -45,7 +72,7 @@
         });
 
         $("#create").click(function () {
-          var m1 = new CarModel();
+          var m1 = new Patient();
           m1.set({color: "red"});
           collection.create(m1);
         });
