@@ -17,6 +17,8 @@ var app = express.createServer();
 app.register('.html', require('ejs'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'html');
+app.set('view options', {layout: false});
+
 app.use(express.static(__dirname + '/'));
 app.get('/', function(req, res) {
   res.render('index.html');
@@ -24,6 +26,7 @@ app.get('/', function(req, res) {
 app.listen(port);
 
 var everyone = nowjs.initialize(app);
+
 var patients = new Backbone.Backend();
 var Procedures = Backbone.Backend.extend({
   byPatientId: function (model, options, callback) {

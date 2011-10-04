@@ -1,0 +1,166 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/local/bin/npm', 'install' ]
+info using npm@1.0.27
+info using node@v0.4.12
+verbose config file /Users/mkuklis/.npmrc
+verbose config file /usr/local/etc/npmrc
+silly testEngine { name: 'backbone-nowjs',
+silly testEngine   version: '0.1.0',
+silly testEngine   description: 'Backbone connector for nowjs',
+silly testEngine   keywords: [ 'backbone', 'nowjs', 'connector' ],
+silly testEngine   author: { name: 'mkuklis', email: 'michal.kuklis@gmail.com' },
+silly testEngine   directories: { lib: './lib/' },
+silly testEngine   dependencies: 
+silly testEngine    { express: '2.2.2',
+silly testEngine      ejs: '0.4.1',
+silly testEngine      settings: '0.0.1',
+silly testEngine      'backbone-nowjs': '0.1.0' },
+silly testEngine   main: 'index',
+silly testEngine   engines: { node: '0.4.x' },
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { dev: true,
+silly testEngine      file: '/Users/mkuklis/Documents/projects/node/now/demo/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: true },
+silly testEngine   _id: 'backbone-nowjs@0.1.0',
+silly testEngine   scripts: { start: 'node server.js' },
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.27',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/mkuklis/Documents/projects/node/now/demo/package.json
+verbose loadDefaults backbone-nowjs@0.1.0
+verbose where, deps [ '/Users/mkuklis/Documents/projects/node/now/demo',
+verbose where, deps   [ 'express', 'ejs', 'settings', 'backbone-nowjs' ] ]
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/package.json
+info preinstall backbone-nowjs@0.1.0
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/package.json
+verbose into /Users/mkuklis/Documents/projects/node/now/demo [ 'express@2.2.2',
+verbose into /Users/mkuklis/Documents/projects/node/now/demo   'ejs@0.4.1',
+verbose into /Users/mkuklis/Documents/projects/node/now/demo   'settings@0.0.1',
+verbose into /Users/mkuklis/Documents/projects/node/now/demo   'backbone-nowjs@0.1.0' ]
+verbose cache add express@2.2.2
+verbose cache add [ 'express@2.2.2', null ]
+silly cache add: name, spec, args [ undefined,
+silly cache add: name, spec, args   'express@2.2.2',
+silly cache add: name, spec, args   [ 'express@2.2.2', null ] ]
+verbose parsed url { pathname: 'express@2.2.2', href: 'express@2.2.2' }
+silly cache add: name, spec, args [ 'express', '2.2.2', [ 'express', '2.2.2' ] ]
+verbose parsed url { pathname: '2.2.2', href: '2.2.2' }
+info addNamed [ 'express', '2.2.2' ]
+verbose addNamed [ '2.2.2', '2.2.2' ]
+verbose cache add ejs@0.4.1
+verbose cache add [ 'ejs@0.4.1', null ]
+silly cache add: name, spec, args [ undefined, 'ejs@0.4.1', [ 'ejs@0.4.1', null ] ]
+verbose parsed url { pathname: 'ejs@0.4.1', href: 'ejs@0.4.1' }
+silly cache add: name, spec, args [ 'ejs', '0.4.1', [ 'ejs', '0.4.1' ] ]
+verbose parsed url { pathname: '0.4.1', href: '0.4.1' }
+info addNamed [ 'ejs', '0.4.1' ]
+verbose addNamed [ '0.4.1', '0.4.1' ]
+verbose cache add settings@0.0.1
+verbose cache add [ 'settings@0.0.1', null ]
+silly cache add: name, spec, args [ undefined,
+silly cache add: name, spec, args   'settings@0.0.1',
+silly cache add: name, spec, args   [ 'settings@0.0.1', null ] ]
+verbose parsed url { pathname: 'settings@0.0.1', href: 'settings@0.0.1' }
+silly cache add: name, spec, args [ 'settings', '0.0.1', [ 'settings', '0.0.1' ] ]
+verbose parsed url { pathname: '0.0.1', href: '0.0.1' }
+info addNamed [ 'settings', '0.0.1' ]
+verbose addNamed [ '0.0.1', '0.0.1' ]
+verbose cache add backbone-nowjs@0.1.0
+verbose cache add [ 'backbone-nowjs@0.1.0', null ]
+silly cache add: name, spec, args [ undefined,
+silly cache add: name, spec, args   'backbone-nowjs@0.1.0',
+silly cache add: name, spec, args   [ 'backbone-nowjs@0.1.0', null ] ]
+verbose parsed url { pathname: 'backbone-nowjs@0.1.0',
+verbose parsed url   href: 'backbone-nowjs@0.1.0' }
+silly cache add: name, spec, args [ 'backbone-nowjs',
+silly cache add: name, spec, args   '0.1.0',
+silly cache add: name, spec, args   [ 'backbone-nowjs', '0.1.0' ] ]
+verbose parsed url { pathname: '0.1.0', href: '0.1.0' }
+info addNamed [ 'backbone-nowjs', '0.1.0' ]
+verbose addNamed [ '0.1.0', '0.1.0' ]
+verbose GET backbone-nowjs/0.1.0
+verbose raw, before any munging backbone-nowjs/0.1.0
+verbose url resolving [ 'https://registry.npmjs.org/',
+verbose url resolving   './backbone-nowjs/0.1.0' ]
+verbose url resolved https://registry.npmjs.org/backbone-nowjs/0.1.0
+verbose url parsed { protocol: 'https:',
+verbose url parsed   slashes: true,
+verbose url parsed   host: 'registry.npmjs.org',
+verbose url parsed   hostname: 'registry.npmjs.org',
+verbose url parsed   href: 'https://registry.npmjs.org/backbone-nowjs/0.1.0',
+verbose url parsed   pathname: '/backbone-nowjs/0.1.0' }
+verbose GET settings/0.0.1
+verbose raw, before any munging settings/0.0.1
+verbose url resolving [ 'https://registry.npmjs.org/', './settings/0.0.1' ]
+verbose url resolved https://registry.npmjs.org/settings/0.0.1
+verbose url parsed { protocol: 'https:',
+verbose url parsed   slashes: true,
+verbose url parsed   host: 'registry.npmjs.org',
+verbose url parsed   hostname: 'registry.npmjs.org',
+verbose url parsed   href: 'https://registry.npmjs.org/settings/0.0.1',
+verbose url parsed   pathname: '/settings/0.0.1' }
+verbose etag "25VAXW1UQPMINAOPVZNKZHHKL"
+verbose GET ejs/0.4.1
+verbose raw, before any munging ejs/0.4.1
+verbose url resolving [ 'https://registry.npmjs.org/', './ejs/0.4.1' ]
+verbose url resolved https://registry.npmjs.org/ejs/0.4.1
+verbose url parsed { protocol: 'https:',
+verbose url parsed   slashes: true,
+verbose url parsed   host: 'registry.npmjs.org',
+verbose url parsed   hostname: 'registry.npmjs.org',
+verbose url parsed   href: 'https://registry.npmjs.org/ejs/0.4.1',
+verbose url parsed   pathname: '/ejs/0.4.1' }
+verbose etag "6ZE0VICQS284QI8B1HSXNTPOA"
+verbose GET express/2.2.2
+verbose raw, before any munging express/2.2.2
+verbose url resolving [ 'https://registry.npmjs.org/', './express/2.2.2' ]
+verbose url resolved https://registry.npmjs.org/express/2.2.2
+verbose url parsed { protocol: 'https:',
+verbose url parsed   slashes: true,
+verbose url parsed   host: 'registry.npmjs.org',
+verbose url parsed   hostname: 'registry.npmjs.org',
+verbose url parsed   href: 'https://registry.npmjs.org/express/2.2.2',
+verbose url parsed   pathname: '/express/2.2.2' }
+verbose etag "3QGYIELE7DXM0HQ2ULXTBPP45"
+verbose response https://registry.npmjs.org/settings/0.0.1
+silly chunk {"name":"settings","version":"0.0.1","description":"Simple, hierarchical environment-based app settings","author":{"name":"Mario Gutierrez","email":"mario@mgutz.com"},"main":"./index","_id":"settings@0.0.1","engines":{"node":"*"},"_nodeSupported":true,"_npmVersion":"0.2.12-1","_nodeVersion":"v0.3.3","dist":{"shasum":"43f62801b353039c14f5ef3be34b3b551c545a11","tarball":"http://registry.npmjs.org/settings/-/settings-0.0.1.tgz"},"directories":{}}
+silly get cb [ 200,
+silly get cb   { vary: 'Accept',
+silly get cb     server: 'CouchDB/1.1.0 (Erlang OTP/R14B03)',
+silly get cb     etag: '"48VY1UW0PU648PEUDD6HKLR8H"',
+silly get cb     date: 'Tue, 04 Oct 2011 03:05:43 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '447' } ]
+verbose bin dist [ '0.4-ares1.7.4-ev4.4-openssl0.9.8l-v83.1.8.26-darwin-10.8.0',
+verbose bin dist   { shasum: '43f62801b353039c14f5ef3be34b3b551c545a11',
+verbose bin dist     tarball: 'http://registry.npmjs.org/settings/-/settings-0.0.1.tgz' } ]
+verbose addRemoteTarball [ 'https://registry.npmjs.org/settings/-/settings-0.0.1.tgz',
+verbose addRemoteTarball   '43f62801b353039c14f5ef3be34b3b551c545a11' ]
+verbose mkdir (expected) error ENOENT, No such file or directory '/var/folders/FY/FYZagOt6EPGUVnTWUuI0fE+++TI/-Tmp-/npm-1317697543403'
+verbose mkdir (expected) error ENOENT, No such file or directory '/var/folders/FY/FYZagOt6EPGUVnTWUuI0fE+++TI/-Tmp-/npm-1317697543403/1317697543403-0.8583772557321936'
+verbose mkdir done: /var/folders/FY/FYZagOt6EPGUVnTWUuI0fE+++TI/-Tmp-/npm-1317697543403/1317697543403-0.8583772557321936 755
+info fetch https://registry.npmjs.org/settings/-/settings-0.0.1.tgz
+verbose fetch to /var/folders/FY/FYZagOt6EPGUVnTWUuI0fE+++TI/-Tmp-/npm-1317697543403/1317697543403-0.8583772557321936/tmp.tgz
+verbose response https://registry.npmjs.org/backbone-nowjs/0.1.0
+silly chunk {"error":"not_found","reason":"document not found"}
+silly chunk 
+silly get cb [ 404,
+silly get cb   { server: 'CouchDB/1.1.0 (Erlang OTP/R14B03)',
+silly get cb     date: 'Tue, 04 Oct 2011 03:05:43 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '52',
+silly get cb     'cache-control': 'must-revalidate' } ]
+ERR! 404 'backbone-nowjs' is not in the npm registry.
+ERR! 404 You should bug the author to publish it.
+ERR! 404 Note that you can also install from a tarball or folder.
+ERR! 
+ERR! System Darwin 10.8.0
+ERR! command "node" "/usr/local/bin/npm" "install"
+ERR! cwd /Users/mkuklis/Documents/projects/node/now/demo
+ERR! node -v v0.4.12
+ERR! npm -v 1.0.27
+verbose exit [ 1, true ]
