@@ -16,7 +16,10 @@ class B.Collection extends B.Collection
     # nowjs callbacks
     now[name] =
       update: (model, options) =>
-        @.get(model.id).set(model, options) if model?
+        if now.core.clientId isnt options?.clientId
+          delete options.clientId if options?.clientId
+          options.silent = false if options?.skip
+          @.get(model.id).set(model, options) if model?
       create: (model, options) =>
         @.add(model, options) if model?
       delete: (model, options) =>
@@ -31,7 +34,11 @@ B.sync = (method, model, options) ->
   # structures so removing callbacks for now
   delete options.success
   delete options.error
-  
+
+  # include clientId if skip is present
+  if options.skip?
+    options.clientId = now.core.clientId
+    options.silent = true
   now.serverSync method, name, model.attributes, options, success
 
 # server side
@@ -78,3 +85,4 @@ if module?.exports?
 
   B.Backend.extend = B.Model.extend
   module.exports = B
+

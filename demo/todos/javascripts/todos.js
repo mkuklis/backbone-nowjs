@@ -2,13 +2,20 @@
 
   // Todo
   window.Todo = Backbone.Model.extend({
+
+    defaults: function() {
+      return {
+        done:  false,
+        order: Todos.nextOrder()
+      };
+    },
+
     toggle: function() {
       this.save({done: !this.get("done")});
     },
 
     clear: function() {
       this.destroy();
-      $(this.view.el).remove();
     }
   });
 
@@ -56,16 +63,16 @@
     },
 
     initialize: function() {
-      _.bindAll(this, 'render', 'close');
+      _.bindAll(this, 'render', 'close', 'remove');
       this.model.bind('change', this.render);
+      this.model.bind("remove", this.remove);
       this.model.view = this;
     },
 
     render: function() {
       $(this.el).html(this.template(this.model.toJSON()));
-      $(this.el).attr("id", "todo-"+this.model.id);
+      $(this.el).attr("id", "todo-" + this.model.id);
       this.setContent();
-      //sortableTodos.addItems(this.el);
       return this;
     },
 
@@ -83,7 +90,7 @@
       }
 
       this.input = this.$(".todo-input");
-      //this.input.addEvent('blur', this.close);
+      this.input.blur(this.close);
     },
 
     toggleDone: function() {
@@ -96,7 +103,7 @@
     },
 
     close: function() {
-      this.model.save({content: this.input.getProperty("value")});
+      this.model.save({content: this.input.val()});
       $(this.el).removeClass("editing");
     },
 
@@ -106,21 +113,13 @@
 
     clear: function() {
       this.model.clear();
+    },
+
+    remove: function() {
+      $(this.el).remove();
     }
   });
-/*
-  var sortableTodos = new Sortables("todo-list", {
-    constrain: true,
-    clone: true,
-    handle: ".todo-content",
-    onComplete: function(ele){
-      sortableTodos.serialize(false, function(element, index){
-        todo = Todos.get(element.getProperty("id").replace("todo-", ""));
-        todo.save({"order": index});
-      });
-    }
-  });
-*/
+
   window.AppView = Backbone.View.extend({
 
     el: $("#todoapp"),
@@ -133,13 +132,28 @@
     },
 
     initialize: function() {
-      _.bindAll(this, 'addOne', 'addAll', 'render');
+      _.bindAll(this, 'addOne', 'addAll', 'render', 'order');
 
       this.input = this.$("#new-todo");
+
+      this.order = _.throttle(this.order, 300);
 
       Todos.bind('add',     this.addOne);
       Todos.bind('reset', this.addAll);
       Todos.bind('all',     this.render);
+      Todos.bind('change:order', this.order);
+
+      // setup sortable
+      $("#todo-list").sortable({
+        update: function (e, ui) {
+          orders =$(this).sortable('serialize').replace(/todo\[\]=/g, "").split('&');
+          _(orders).each(function (order, index) {
+            var todo = Todos.get(order);
+            todo.save({"order": index}, {skip: true});
+          });
+        }
+      });
+
       Todos.fetch();
     },
 
@@ -152,12 +166,17 @@
       }));
     },
 
+    order: function () {
+      Todos.fetch();
+    },
+
     addOne: function(todo) {
       var view = new TodoView({model: todo}).render().el;
       this.$("#todo-list").append(view);
     },
 
     addAll: function() {
+      this.$("#todo-list").empty();
       Todos.each(this.addOne);
     },
 

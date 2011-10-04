@@ -36,8 +36,16 @@
       name = B.nowjsConnector.extractName(this);
       return now[name] = {
         update: __bind(function(model, options) {
-          if (model != null) {
-            return this.get(model.id).set(model, options);
+          if (now.core.clientId !== (options != null ? options.clientId : void 0)) {
+            if (options != null ? options.clientId : void 0) {
+              delete options.clientId;
+            }
+            if (options != null ? options.skip : void 0) {
+              options.silent = false;
+            }
+            if (model != null) {
+              return this.get(model.id).set(model, options);
+            }
           }
         }, this),
         create: __bind(function(model, options) {
@@ -61,6 +69,10 @@
     success = options.success;
     delete options.success;
     delete options.error;
+    if (options.skip != null) {
+      options.clientId = now.core.clientId;
+      options.silent = true;
+    }
     return now.serverSync(method, name, model.attributes, options, success);
   };
   if ((typeof module !== "undefined" && module !== null ? module.exports : void 0) != null) {
