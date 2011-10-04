@@ -3,12 +3,11 @@
   , "description": "Backbone connector for nowjs"
   , "keywords": ["backbone", "nowjs", "connector"]
   , "author": "mkuklis <michal.kuklis@gmail.com>"
-  , "directories": { "lib": "./lib/" }
   , "dependencies": {
         "now": "0.7"
       , "underscore": "1.1.7"
       , "backbone": "0.5.3"
     }
-  , "main": "index"
+  , "main": "backbone-nowjs.js"
   , "engines": { "node": "0.4.x" }
 }
