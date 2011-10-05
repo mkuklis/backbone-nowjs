@@ -14,7 +14,7 @@
   if (typeof Backbone !== "undefined" && Backbone !== null) {
     B = Backbone;
   }
-  B.nowjsConnector = {
+  B.connector = {
     extractName: function(model, options) {
       var l, name, s;
       name = _.isFunction(model.url) ? model.url() : model.url;
@@ -33,7 +33,7 @@
     };
     Collection.prototype.listen = function() {
       var name;
-      name = B.nowjsConnector.extractName(this);
+      name = B.connector.extractName(this);
       return now[name] = {
         update: __bind(function(model, options) {
           if (now.core.clientId !== (options != null ? options.clientId : void 0)) {
@@ -65,7 +65,7 @@
   })();
   B.sync = function(method, model, options) {
     var name, success;
-    name = Backbone.nowjsConnector.extractName(this);
+    name = Backbone.connector.extractName(this);
     success = options.success;
     delete options.success;
     delete options.error;
@@ -76,18 +76,25 @@
     return now.serverSync(method, name, model.attributes, options, success);
   };
   if ((typeof module !== "undefined" && module !== null ? module.exports : void 0) != null) {
-    B.nowjsConnector.connect = function(everyone, backends) {
+    B.connector.connect = function(nowjs, everyone, backends) {
+      everyone.on('join', function() {
+        return B.connector.getGroup(nowjs).addUser(this.user.clientId);
+      });
       return everyone.now.serverSync = function(method, name, model, options, success) {
-        var action;
+        var action, group;
         action = options.action != null ? options.action : method;
+        group = B.connector.getGroup(nowjs);
         return backends[name][action](model, options, __bind(function(data) {
           if (method === "read") {
             return success(data, options);
           } else {
-            return everyone.now[name][method](data, options);
+            return group.now[name][method](data, options);
           }
         }, this));
       };
+    };
+    B.connector.getGroup = function(now) {
+      return now.getGroup("default");
     };
     B.Backend = (function() {
       function Backend() {

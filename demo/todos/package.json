@@ -1,7 +1,7 @@
-{   "name": "backbone-nowjs"
+{   "name": "backbone-nowjs-demo"
   , "version": "0.1.0"
-  , "description": "Backbone connector for nowjs"
-  , "keywords": ["backbone", "nowjs", "connector"]
+  , "description": "demo for Backbone connector for nowjs"
+  , "keywords": ["demo", "backbone", "nowjs", "connector"]
   , "author": "mkuklis <michal.kuklis@gmail.com>"
   , "dependencies": {
         "express": "2.2.2"

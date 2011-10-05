@@ -23,4 +23,4 @@ app.listen(port);
 var everyone = nowjs.initialize(app);
 var todos = new Backbone.Backend();
 
-Backbone.nowjsConnector.connect(everyone, {todos: todos});
+Backbone.connector.connect(nowjs, everyone, {todos: todos});
