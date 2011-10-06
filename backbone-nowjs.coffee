@@ -39,12 +39,16 @@ B.sync = (method, model, options) ->
   if options.skip?
     options.clientId = now.core.clientId
     options.silent = true
-  now.serverSync method, name, model.attributes, options, success
+
+  try
+    now.serverSync method, name, model.attributes, options, success
+  catch e
+    model.trigger('error', model, e, options)
 
 # server side
 if module?.exports?
   B.connector.connect = (nowjs, everyone, backends) ->
-    
+
     everyone.on 'join', () ->
       B.connector.getGroup(nowjs).addUser(this.user.clientId)
 
@@ -53,14 +57,15 @@ if module?.exports?
       action = if options.action? then options.action else method
       # retrieve current group
       group = B.connector.getGroup(nowjs)
-      
-      backends[name][action] model, options, (data) =>
-        if method == "read" # call current client
-          # this.now[name][method](data, options)
-          success(data, options)
-        else # call everyone
-          group.now[name][method](data, options)
-  
+
+      try
+        backends[name][action] model, options, (data) =>
+          if method == "read" # call current client
+            # this.now[name][method](data, options)
+            success(data, options)
+          else # call everyone
+            group.now[name][method](data, options)
+      catch e
   # creates and returns default group
   # override it for your needs
   B.connector.getGroup = (now) ->

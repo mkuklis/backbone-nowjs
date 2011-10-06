@@ -329,3 +329,15 @@ body {
 #credits a {
   color: #888888;
 }
+
+#message {
+  background-color: #ff0000;
+  color: #fff;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding: 3px 5px 3px 5px;
+  text-align: center;
+  display: none;
+}
+

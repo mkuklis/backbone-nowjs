@@ -142,6 +142,10 @@
       Todos.bind('reset', this.addAll);
       Todos.bind('all',     this.render);
       Todos.bind('change:order', this.order);
+      Todos.bind("error", function () {
+        console.log(arguments);
+        console.log("error");
+      });
 
       // setup sortable
       $("#todo-list").sortable({
@@ -209,6 +213,15 @@
 
   $(function () {
     now.ready(function () {
+      now.core.socketio.on("reconnect", function () {
+        //$('#message').fadeOut();
+        window.location.reload();
+      });
+
+      now.core.socketio.on("disconnect", function () {
+        $('#message').fadeIn();
+      });
+
       window.App = new AppView;
     });
   });

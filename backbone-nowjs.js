@@ -73,7 +73,11 @@
       options.clientId = now.core.clientId;
       options.silent = true;
     }
-    return now.serverSync(method, name, model.attributes, options, success);
+    try {
+      return now.serverSync(method, name, model.attributes, options, success);
+    } catch (e) {
+      return model.trigger('error', model, e, options);
+    }
   };
   if ((typeof module !== "undefined" && module !== null ? module.exports : void 0) != null) {
     B.connector.connect = function(nowjs, everyone, backends) {
@@ -84,13 +88,17 @@
         var action, group;
         action = options.action != null ? options.action : method;
         group = B.connector.getGroup(nowjs);
-        return backends[name][action](model, options, __bind(function(data) {
-          if (method === "read") {
-            return success(data, options);
-          } else {
-            return group.now[name][method](data, options);
-          }
-        }, this));
+        try {
+          return backends[name][action](model, options, __bind(function(data) {
+            if (method === "read") {
+              return success(data, options);
+            } else {
+              return group.now[name][method](data, options);
+            }
+          }, this));
+        } catch (e) {
+
+        }
       };
     };
     B.connector.getGroup = function(now) {
