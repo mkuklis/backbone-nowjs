@@ -1,5 +1,5 @@
 {   "name": "backbone-nowjs"
-  , "version": "0.1.0"
+  , "version": "0.1.1"
   , "description": "Backbone connector for nowjs"
   , "keywords": ["backbone", "nowjs", "connector"]
   , "author": "mkuklis <michal.kuklis@gmail.com>"

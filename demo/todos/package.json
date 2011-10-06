@@ -4,7 +4,7 @@
   , "keywords": ["demo", "backbone", "nowjs", "connector"]
   , "author": "mkuklis <michal.kuklis@gmail.com>"
   , "dependencies": {
-        "express": "2.2.2"
+        "express": "2.4.7"
       , "ejs": "0.4.1"
       , "settings": "0.0.1"
       , "backbone-nowjs": "0.1.0"
