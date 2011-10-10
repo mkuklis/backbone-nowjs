@@ -7,6 +7,15 @@ B.connector =
     s = name.split("/")
     l = s.length
     name = if l % 2 then s[l - 2] else s[l - 1]
+  notify:
+    all: ->
+      true
+    none: ->
+      false
+    self: (clientId, options) ->
+      clientId is options?.clientId
+    others: (clientId, options) ->
+      clientId isnt options?.clientId
 
 class B.Collection extends B.Collection
   initialize: ->
@@ -16,14 +25,14 @@ class B.Collection extends B.Collection
     # nowjs callbacks
     now[name] =
       update: (model, options) =>
-        if now.core.clientId isnt options?.clientId
-          delete options.clientId if options?.clientId
-          options.silent = false if options?.skip
+        if B.connector.notify[options.notify](now.core.clientId, options)
           @.get(model.id).set(model, options) if model?
       create: (model, options) =>
-        @.add(model, options) if model?
+        if B.connector.notify[options.notify](now.core.clientId, options)
+          @.add(model, options) if model?
       delete: (model, options) =>
-        @.remove(model, options) if model?
+        if B.connector.notify[options.notify](now.core.clientId, options)
+          @.remove(model, options) if model?
       read: (data, options, success) =>
         #@[if options?.add then 'add' else 'reset'](data, options);
 
@@ -35,11 +44,9 @@ B.sync = (method, model, options) ->
   delete options.success
   delete options.error
 
-  # include clientId if skip is present
-  if options.skip?
-    options.clientId = now.core.clientId
-    options.silent = true
-
+  options.notify = "all" unless options.notify?
+  options.clientId = now.core.clientId
+  
   try
     now.serverSync method, name, model.attributes, options, success
   catch e

@@ -143,8 +143,6 @@
       Todos.bind('all',     this.render);
       Todos.bind('change:order', this.order);
       Todos.bind("error", function () {
-        console.log(arguments);
-        console.log("error");
       });
 
       // setup sortable
@@ -153,7 +151,7 @@
           orders =$(this).sortable('serialize').replace(/todo\[\]=/g, "").split('&');
           _(orders).each(function (order, index) {
             var todo = Todos.get(order);
-            todo.save({"order": index}, {skip: true});
+            todo.save({"order": index}, {notify: "others"});
           });
         }
       });
@@ -188,7 +186,7 @@
       if (e.keyCode != 13) return;
       Todos.create({
         content: this.input.val(),
-        done:    false
+        done: false
       });
       this.input.val("");
     },
@@ -214,7 +212,6 @@
   $(function () {
     now.ready(function () {
       now.core.socketio.on("reconnect", function () {
-        //$('#message').fadeOut();
         window.location.reload();
       });
 

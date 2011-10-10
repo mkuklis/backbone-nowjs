@@ -21,6 +21,20 @@
       s = name.split("/");
       l = s.length;
       return name = l % 2 ? s[l - 2] : s[l - 1];
+    },
+    notify: {
+      all: function() {
+        return true;
+      },
+      none: function() {
+        return false;
+      },
+      self: function(clientId, options) {
+        return clientId === (options != null ? options.clientId : void 0);
+      },
+      others: function(clientId, options) {
+        return clientId !== (options != null ? options.clientId : void 0);
+      }
     }
   };
   B.Collection = (function() {
@@ -36,26 +50,24 @@
       name = B.connector.extractName(this);
       return now[name] = {
         update: __bind(function(model, options) {
-          if (now.core.clientId !== (options != null ? options.clientId : void 0)) {
-            if (options != null ? options.clientId : void 0) {
-              delete options.clientId;
-            }
-            if (options != null ? options.skip : void 0) {
-              options.silent = false;
-            }
+          if (B.connector.notify[options.notify](now.core.clientId, options)) {
             if (model != null) {
               return this.get(model.id).set(model, options);
             }
           }
         }, this),
         create: __bind(function(model, options) {
-          if (model != null) {
-            return this.add(model, options);
+          if (B.connector.notify[options.notify](now.core.clientId, options)) {
+            if (model != null) {
+              return this.add(model, options);
+            }
           }
         }, this),
         "delete": __bind(function(model, options) {
-          if (model != null) {
-            return this.remove(model, options);
+          if (B.connector.notify[options.notify](now.core.clientId, options)) {
+            if (model != null) {
+              return this.remove(model, options);
+            }
           }
         }, this),
         read: __bind(function(data, options, success) {}, this)
@@ -69,10 +81,10 @@
     success = options.success;
     delete options.success;
     delete options.error;
-    if (options.skip != null) {
-      options.clientId = now.core.clientId;
-      options.silent = true;
+    if (options.notify == null) {
+      options.notify = "all";
     }
+    options.clientId = now.core.clientId;
     try {
       return now.serverSync(method, name, model.attributes, options, success);
     } catch (e) {
