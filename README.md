@@ -13,7 +13,21 @@ Demos
 
 Dependencies
 ------------
-
+* [nowjs](https://github.com/flotype/now) (>= 0.7.4)
 * [Backbone.js](https://github.com/documentcloud/backbone) (>= 0.5.3)
 * [Underscore.js](https://github.com/documentcloud/underscore) (>= 1.1.7)
 
+
+Installation
+------------
+On server install asEvented via npm first:
+
+        npm install backbone-nowjs
+
+and then include it in your project:
+
+        var BackboneNJS = require('backbone-nowjs');
+
+In browser include single JavaScript file:
+
+       <script src="backbone-nowjs.js"></script>
