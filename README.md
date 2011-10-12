@@ -20,7 +20,7 @@ Dependencies
 
 Installation
 ------------
-On server install asEvented via npm first:
+On server install backbone-nowjs via npm first:
 
         npm install backbone-nowjs
 
