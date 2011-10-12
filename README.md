@@ -8,7 +8,7 @@ on [node](http://nodejs.org/) and nowjs.
 
 Demos
 -----
-* [Real time todo list](https://github.com/mkuklis/backbone-nowjs/tree/master/demo/todos) real time todo list based on oryginal work by Jérôme Gravel-Niquet (run `npm install` in order to bundle all dependecies)
+* [Real time todo list](https://github.com/mkuklis/backbone-nowjs/tree/master/demo/todos) based on original work by Jérôme Gravel-Niquet (run `npm install` in order to bundle all dependecies)
 
 
 Dependencies
