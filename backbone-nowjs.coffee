@@ -7,6 +7,7 @@ B.connector =
     s = name.split("/")
     l = s.length
     name = if l % 2 then s[l - 2] else s[l - 1]
+
   notify:
     all: ->
       true
