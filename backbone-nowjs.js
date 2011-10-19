@@ -20,7 +20,11 @@
       name = _.isFunction(model.url) ? model.url() : model.url;
       s = name.split("/");
       l = s.length;
-      return name = l % 2 ? s[l - 2] : s[l - 1];
+      if (l > 1) {
+        return name = l % 2 ? s[l - 2] : s[l - 1];
+      } else {
+        return name = s[0];
+      }
     },
     notify: {
       all: function() {

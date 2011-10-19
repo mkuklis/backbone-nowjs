@@ -6,7 +6,10 @@ B.connector =
     name = if _.isFunction(model.url) then model.url() else model.url
     s = name.split("/")
     l = s.length
-    name = if l % 2 then s[l - 2] else s[l - 1]
+    if l > 1
+      name = if l % 2 then s[l - 2] else s[l - 1]
+    else
+      name = s[0]
 
   notify:
     all: ->
@@ -47,7 +50,7 @@ B.sync = (method, model, options) ->
 
   options.notify = "all" unless options.notify?
   options.clientId = now.core.clientId
-  
+
   try
     now.serverSync method, name, model.attributes, options, success
   catch e
@@ -69,7 +72,6 @@ if module?.exports?
       try
         backends[name][action] model, options, (data) =>
           if method == "read" # call current client
-            # this.now[name][method](data, options)
             success(data, options)
           else # call everyone
             group.now[name][method](data, options)
