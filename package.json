@@ -10,4 +10,5 @@
     }
   , "main": "backbone-nowjs.js"
   , "engines": { "node": "0.4.x" }
+  , "repository": {"type": "git", "url": "git://github.com/mkuklis/backbone-nowjs.git" } 
 }
