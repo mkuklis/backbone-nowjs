@@ -1,6 +1,7 @@
 {   "name": "backbone-nowjs"
   , "version": "0.1.2"
   , "description": "Backbone connector for nowjs"
+  , "homepage": "http://github.com/mkuklis/backbone-nowjs"
   , "keywords": ["backbone", "nowjs", "connector"]
   , "author": "mkuklis <michal.kuklis@gmail.com>"
   , "dependencies": {
@@ -11,4 +12,5 @@
   , "main": "backbone-nowjs.js"
   , "engines": { "node": "0.4.x" }
   , "repository": {"type": "git", "url": "git://github.com/mkuklis/backbone-nowjs.git" }
+  , "licenses": [{"type" : "MIT", "url" : "http://github.com/mkuklis/backbone-nowjs/raw/master/LICENSE"}]
 }
