@@ -14,19 +14,54 @@
   if (typeof Backbone !== "undefined" && Backbone !== null) {
     B = Backbone;
   }
-  B.connector = {
-    extractName: function(model, options) {
-      var l, name, s;
-      name = _.isFunction(model.url) ? model.url() : model.url;
-      s = name.split("/");
-      l = s.length;
-      if (l > 1) {
-        return name = l % 2 ? s[l - 2] : s[l - 1];
-      } else {
-        return name = s[0];
-      }
-    },
-    notify: {
+  B.Model = (function() {
+    __extends(Model, B.Model);
+    function Model() {
+      Model.__super__.constructor.apply(this, arguments);
+    }
+    Model.prototype.getBackend = function() {
+      return this.backend || this.collection.backend;
+    };
+    return Model;
+  })();
+  B.Collection = (function() {
+    __extends(Collection, B.Collection);
+    function Collection() {
+      Collection.__super__.constructor.apply(this, arguments);
+    }
+    Collection.prototype.initialize = function() {
+      return this.listen();
+    };
+    Collection.prototype.getBackend = function() {
+      return this.backend;
+    };
+    Collection.prototype.listen = function() {
+      return now[this.backend] = {
+        update: __bind(function(model, options) {
+          if (this.notify[options.notify](now.core.clientId, options)) {
+            if (model != null) {
+              return this.get(model.id).set(model, options);
+            }
+          }
+        }, this),
+        create: __bind(function(model, options) {
+          if (this.notify[options.notify](now.core.clientId, options)) {
+            if (model != null) {
+              return this.add(model, options);
+            }
+          }
+        }, this),
+        "delete": __bind(function(model, options) {
+          if (this.notify[options.notify](now.core.clientId, options)) {
+            if (model != null) {
+              return this.remove(model, options);
+            }
+          }
+        }, this),
+        read: __bind(function(data, options, success) {}, this)
+      };
+    };
+    Collection.prototype.notify = {
       all: function() {
         return true;
       },
@@ -39,49 +74,15 @@
       others: function(clientId, options) {
         return clientId !== (options != null ? options.clientId : void 0);
       }
-    }
-  };
-  B.Collection = (function() {
-    __extends(Collection, B.Collection);
-    function Collection() {
-      Collection.__super__.constructor.apply(this, arguments);
-    }
-    Collection.prototype.initialize = function() {
-      return this.listen();
-    };
-    Collection.prototype.listen = function() {
-      var name;
-      name = B.connector.extractName(this);
-      return now[name] = {
-        update: __bind(function(model, options) {
-          if (B.connector.notify[options.notify](now.core.clientId, options)) {
-            if (model != null) {
-              return this.get(model.id).set(model, options);
-            }
-          }
-        }, this),
-        create: __bind(function(model, options) {
-          if (B.connector.notify[options.notify](now.core.clientId, options)) {
-            if (model != null) {
-              return this.add(model, options);
-            }
-          }
-        }, this),
-        "delete": __bind(function(model, options) {
-          if (B.connector.notify[options.notify](now.core.clientId, options)) {
-            if (model != null) {
-              return this.remove(model, options);
-            }
-          }
-        }, this),
-        read: __bind(function(data, options, success) {}, this)
-      };
     };
     return Collection;
   })();
   B.sync = function(method, model, options) {
-    var name, success;
-    name = Backbone.connector.extractName(this);
+    var backend, success;
+    backend = this.getBackend();
+    if (backend == null) {
+      throw "no backend found for given model";
+    }
     success = options.success;
     delete options.success;
     delete options.error;
@@ -90,35 +91,38 @@
     }
     options.clientId = now.core.clientId;
     try {
-      return now.serverSync(method, name, model.attributes, options, success);
+      return now.serverSync(method, backend, model.attributes, options, success);
     } catch (e) {
       return model.trigger('error', model, e, options);
     }
   };
   if ((typeof module !== "undefined" && module !== null ? module.exports : void 0) != null) {
-    B.connector.connect = function(nowjs, everyone, backends) {
-      everyone.on('join', function() {
-        return B.connector.getGroup(nowjs).addUser(this.user.clientId);
-      });
-      return everyone.now.serverSync = function(method, name, model, options, success) {
-        var action, group;
-        action = options.action != null ? options.action : method;
-        group = B.connector.getGroup(nowjs);
-        try {
-          return backends[name][action](model, options, __bind(function(data) {
-            if (method === "read") {
-              return success(data, options);
-            } else {
-              return group.now[name][method](data, options);
-            }
-          }, this));
-        } catch (e) {
+    B.connector = {
+      connect: function(nowjs, everyone, backends) {
+        everyone.on('join', function() {
+          var group;
+          return group = B.connector.getGroup(nowjs).addUser(this.user.clientId);
+        });
+        return everyone.now.serverSync = function(method, backend, model, options, success) {
+          var action, group;
+          action = options.action != null ? options.action : method;
+          group = B.connector.getGroup(nowjs);
+          try {
+            return backends[backend][action](model, options, __bind(function(data) {
+              if (method === "read") {
+                return success(data, options);
+              } else {
+                return group.now[backend][method](data, options);
+              }
+            }, this));
+          } catch (e) {
 
-        }
-      };
-    };
-    B.connector.getGroup = function(now) {
-      return now.getGroup("default");
+          }
+        };
+      },
+      getGroup: function(now) {
+        return now.getGroup("default");
+      }
     };
     B.Backend = (function() {
       function Backend() {

@@ -6,8 +6,7 @@
   , "dependencies": {
         "express": "2.4.7"
       , "ejs": "0.4.1"
-      , "settings": "0.0.1"
-      , "backbone-nowjs": "0.1.1"
+      , "backbone-nowjs": "0.1.2"
     }
   , "main": "server.js"
   , "engines": { "node": "0.4.x" }

@@ -21,7 +21,7 @@
 
   // Todo List
   window.TodoList = Backbone.Collection.extend({
-    url: "/todos",
+    backend: "todos",
     model: Todo,
 
     // Returns all done todos.

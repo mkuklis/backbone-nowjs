@@ -1,0 +1,218 @@
+info it worked if it ends with ok
+verbose cli [ 'node', '/usr/local/bin/npm', 'link' ]
+info using npm@1.0.27
+info using node@v0.4.12
+verbose config file /Users/mkuklis/.npmrc
+verbose config file /usr/local/etc/npmrc
+silly testEngine { name: 'backbone-nowjs-demo',
+silly testEngine   version: '0.1.0',
+silly testEngine   description: 'demo for Backbone connector for nowjs',
+silly testEngine   keywords: [ 'demo', 'backbone', 'nowjs', 'connector' ],
+silly testEngine   author: { name: 'mkuklis', email: 'michal.kuklis@gmail.com' },
+silly testEngine   dependencies: 
+silly testEngine    { express: '2.4.7',
+silly testEngine      ejs: '0.4.1',
+silly testEngine      'backbone-nowjs': '0.1.2' },
+silly testEngine   main: 'server.js',
+silly testEngine   engines: { node: '0.4.x' },
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { dev: true,
+silly testEngine      file: '/Users/mkuklis/Documents/projects/node/now/demo/todos/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: true },
+silly testEngine   _id: 'backbone-nowjs-demo@0.1.0',
+silly testEngine   scripts: { start: 'node server.js' },
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.27',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/mkuklis/Documents/projects/node/now/demo/todos/package.json
+verbose loadDefaults backbone-nowjs-demo@0.1.0
+verbose link: build target /usr/local/lib/node_modules/backbone-nowjs-demo
+verbose install(where, what) [ '/Users/mkuklis/Documents/projects/node/now/demo/todos',
+verbose install(where, what)   [] ]
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/todos/package.json
+verbose where, deps [ '/Users/mkuklis/Documents/projects/node/now/demo/todos',
+verbose where, deps   [ 'express', 'ejs', 'backbone-nowjs' ] ]
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/todos/package.json
+info preinstall backbone-nowjs-demo@0.1.0
+silly testEngine { name: 'backbone-nowjs',
+silly testEngine   version: '0.1.1',
+silly testEngine   description: 'Backbone connector for nowjs',
+silly testEngine   keywords: [ 'backbone', 'nowjs', 'connector' ],
+silly testEngine   author: { name: 'mkuklis', email: 'michal.kuklis@gmail.com' },
+silly testEngine   dependencies: { now: '0.7', underscore: '1.1.7', backbone: '0.5.3' },
+silly testEngine   main: 'backbone-nowjs.js',
+silly testEngine   engines: { node: '0.4.x' },
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/backbone-nowjs/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'backbone-nowjs@0.1.1',
+silly testEngine   devDependencies: {},
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.27',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/backbone-nowjs/package.json
+verbose loadDefaults backbone-nowjs@0.1.1
+silly testEngine { name: 'ejs',
+silly testEngine   description: 'Embedded JavaScript templates',
+silly testEngine   version: '0.4.1',
+silly testEngine   author: 
+silly testEngine    { name: 'TJ Holowaychuk',
+silly testEngine      email: 'tj@vision-media.ca' },
+silly testEngine   keywords: [ 'template', 'engine', 'ejs' ],
+silly testEngine   main: './lib/ejs.js',
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/ejs/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'ejs@0.4.1',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   engines: { node: '*' },
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.27',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/ejs/package.json
+verbose loadDefaults ejs@0.4.1
+silly testEngine { name: 'express',
+silly testEngine   description: 'Sinatra inspired web development framework',
+silly testEngine   version: '2.4.7',
+silly testEngine   author: 
+silly testEngine    { name: 'TJ Holowaychuk',
+silly testEngine      email: 'tj@vision-media.ca' },
+silly testEngine   contributors: 
+silly testEngine    [ { name: 'TJ Holowaychuk',
+silly testEngine        email: 'tj@vision-media.ca' },
+silly testEngine      { name: 'Aaron Heckmann',
+silly testEngine        email: 'aaron.heckmann+github@gmail.com' },
+silly testEngine      { name: 'Ciaran Jessup', email: 'ciaranj@gmail.com' },
+silly testEngine      { name: 'Guillermo Rauch', email: 'rauchg@gmail.com' } ],
+silly testEngine   dependencies: 
+silly testEngine    { connect: '1.7.x',
+silly testEngine      mime: '>= 0.0.1',
+silly testEngine      qs: '>= 0.3.1',
+silly testEngine      mkdirp: '0.0.7' },
+silly testEngine   devDependencies: 
+silly testEngine    { 'connect-form': '0.2.1',
+silly testEngine      ejs: '0.4.2',
+silly testEngine      expresso: '0.7.2',
+silly testEngine      hamljs: '0.5.1',
+silly testEngine      jade: '0.11.0',
+silly testEngine      stylus: '0.13.0',
+silly testEngine      should: '0.2.1',
+silly testEngine      'express-messages': '0.0.2',
+silly testEngine      'node-markdown': '>= 0.0.1',
+silly testEngine      'connect-redis': '>= 0.0.1' },
+silly testEngine   keywords: [ 'framework', 'sinatra', 'web', 'rest', 'restful' ],
+silly testEngine   repository: 
+silly testEngine    { type: 'git',
+silly testEngine      url: 'git://github.com/visionmedia/express.git' },
+silly testEngine   main: 'index',
+silly testEngine   bin: { express: './bin/express' },
+silly testEngine   scripts: { test: 'make test', prepublish: 'npm prune' },
+silly testEngine   engines: { node: '>= 0.4.1 < 0.5.0' },
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/express/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'express@2.4.7',
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.27',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/express/package.json
+verbose loadDefaults express@2.4.7
+silly testEngine { name: 'settings',
+silly testEngine   version: '0.0.1',
+silly testEngine   description: 'Simple, hierarchical environment-based app settings',
+silly testEngine   author: { name: 'Mario Gutierrez', email: 'mario@mgutz.com' },
+silly testEngine   main: './index.js',
+silly testEngine   _npmJsonOpts: 
+silly testEngine    { file: '/Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/settings/package.json',
+silly testEngine      wscript: false,
+silly testEngine      contributors: false,
+silly testEngine      serverjs: false },
+silly testEngine   _id: 'settings@0.0.1',
+silly testEngine   dependencies: {},
+silly testEngine   devDependencies: {},
+silly testEngine   engines: { node: '*' },
+silly testEngine   _engineSupported: true,
+silly testEngine   _npmVersion: '1.0.27',
+silly testEngine   _nodeVersion: 'v0.4.12',
+silly testEngine   _defaultsLoaded: true }
+verbose caching /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/settings/package.json
+verbose loadDefaults settings@0.0.1
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/todos/package.json
+verbose into /Users/mkuklis/Documents/projects/node/now/demo/todos [ 'express@2.4.7',
+verbose into /Users/mkuklis/Documents/projects/node/now/demo/todos   'ejs@0.4.1',
+verbose into /Users/mkuklis/Documents/projects/node/now/demo/todos   'backbone-nowjs@0.1.2' ]
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/backbone-nowjs/package.json
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/ejs/package.json
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/express/package.json
+verbose from cache /Users/mkuklis/Documents/projects/node/now/demo/todos/node_modules/settings/package.json
+verbose already installed in /Users/mkuklis/Documents/projects/node/now/demo/todos skipping express@2.4.7
+verbose already installed in /Users/mkuklis/Documents/projects/node/now/demo/todos skipping ejs@0.4.1
+verbose cache add backbone-nowjs@0.1.2
+verbose cache add [ 'backbone-nowjs@0.1.2', null ]
+silly cache add: name, spec, args [ undefined,
+silly cache add: name, spec, args   'backbone-nowjs@0.1.2',
+silly cache add: name, spec, args   [ 'backbone-nowjs@0.1.2', null ] ]
+verbose parsed url { pathname: 'backbone-nowjs@0.1.2',
+verbose parsed url   href: 'backbone-nowjs@0.1.2' }
+silly cache add: name, spec, args [ 'backbone-nowjs',
+silly cache add: name, spec, args   '0.1.2',
+silly cache add: name, spec, args   [ 'backbone-nowjs', '0.1.2' ] ]
+verbose parsed url { pathname: '0.1.2', href: '0.1.2' }
+info addNamed [ 'backbone-nowjs', '0.1.2' ]
+verbose addNamed [ '0.1.2', '0.1.2' ]
+verbose GET backbone-nowjs/0.1.2
+verbose raw, before any munging backbone-nowjs/0.1.2
+verbose url resolving [ 'https://registry.npmjs.org/',
+verbose url resolving   './backbone-nowjs/0.1.2' ]
+verbose url resolved https://registry.npmjs.org/backbone-nowjs/0.1.2
+verbose url parsed { protocol: 'https:',
+verbose url parsed   slashes: true,
+verbose url parsed   host: 'registry.npmjs.org',
+verbose url parsed   hostname: 'registry.npmjs.org',
+verbose url parsed   href: 'https://registry.npmjs.org/backbone-nowjs/0.1.2',
+verbose url parsed   pathname: '/backbone-nowjs/0.1.2' }
+verbose response https://registry.npmjs.org/backbone-nowjs/0.1.2
+silly chunk {"error":"version not found: 0.1.2"}
+silly get cb [ 404,
+silly get cb   { vary: 'Accept',
+silly get cb     server: 'CouchDB/1.1.0 (Erlang OTP/R14B03)',
+silly get cb     etag: '"48ZFDUGEMBN0S0JXA6NO4XSJY"',
+silly get cb     date: 'Sun, 23 Oct 2011 04:21:25 GMT',
+silly get cb     'content-type': 'application/json',
+silly get cb     'content-length': '36' } ]
+ERR! Error: version not found: 0.1.2 : backbone-nowjs/0.1.2
+ERR!     at IncomingMessage.responseDone (/usr/local/lib/node_modules/npm/lib/utils/npm-registry-client/request.js:205:16)
+ERR!     at IncomingMessage.emit (events.js:81:20)
+ERR!     at HTTPParser.onMessageComplete (http.js:133:23)
+ERR!     at CleartextStream.ondata (http.js:1231:22)
+ERR!     at CleartextStream._push (tls.js:303:27)
+ERR!     at SecurePair.cycle (tls.js:577:20)
+ERR!     at EncryptedStream.write (tls.js:96:13)
+ERR!     at Socket.ondata (stream.js:36:26)
+ERR!     at Socket.emit (events.js:64:17)
+ERR!     at Socket._onReadable (net.js:672:14)
+ERR! Report this *entire* log at:
+ERR!     <http://github.com/isaacs/npm/issues>
+ERR! or email it to:
+ERR!     <npm-@googlegroups.com>
+ERR! 
+ERR! System Darwin 10.8.0
+ERR! command "node" "/usr/local/bin/npm" "link"
+ERR! cwd /Users/mkuklis/Documents/projects/node/now/demo/todos
+ERR! node -v v0.4.12
+ERR! npm -v 1.0.27
+verbose exit [ 1, true ]
