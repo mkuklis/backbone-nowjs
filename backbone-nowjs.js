@@ -127,7 +127,9 @@
     B.Backend = (function() {
       function Backend() {
         this.col = [];
+        this.initialize();
       }
+      Backend.prototype.initialize = function() {};
       Backend.prototype.update = function(data, options, callback) {
         var el, i, _len, _ref;
         _ref = this.col;

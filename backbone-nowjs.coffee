@@ -88,6 +88,10 @@ if module?.exports?
   class B.Backend
     constructor: ->
       @.col = []
+      @.initialize()
+
+    initialize: () ->
+    
     update: (data, options, callback) ->
       for el, i in @.col
         if data.id == el.id
