@@ -12,7 +12,7 @@ In order to run specs:
 
 3. install nowclient
         
-        git clone https://github.com/Flotype/nowclient.git
+        git clone git://github.com/mkuklis/nowclient.git
         cd nowclient
         npm install -g
         npm link nowclient (from backbone-nowjs folder)
