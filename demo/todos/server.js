@@ -1,4 +1,4 @@
-var sys = require("sys")
+var util = require('util')
   , express = require('express')
   , nowjs = require("now")
   , port = parseInt(process.env.VCAP_APP_PORT || process.env.PORT || 8080)
